@@ -10,9 +10,10 @@ function index(req, res) {
 
 function show(req, res){
     let nasaID = req.params.nasa_id
+    console.log('nasa show controller', nasaID)
     Nasa.findById(nasaID, function(err, showNasa){
         if (err) res.send('Nasa show controller', err);
-        res.json(showNasa)
+        res.json(showNasa);
     })
 }
 

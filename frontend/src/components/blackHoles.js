@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 class BlackHoles extends Component {
     state = {
@@ -16,9 +17,10 @@ class BlackHoles extends Component {
     render(){
         console.log('Black Holes', this.state.blackhole)
         let blackHoleResult = this.state.blackhole.map(item => {
-            return <div key =  {item.data[0].nasa_id}>
+            let nasa_id = item.data[0].nasa_id
+            return <div key =  {nasa_id}>
             <h3> {item.data[0].title} </h3> 
-            <img src={item.links[0].href} alt = "Nasa Blackhole" width = "25%" height="25%" />
+            <Link to = {`/api/nasa/${nasa_id}`}> <img src={item.links[0].href} alt="Nasa Blackhole" width="25%" height="25%" /> </Link>
             <p> {item.data[0].description_508} </p>
             </div>
         })

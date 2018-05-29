@@ -4,7 +4,8 @@ Comment = require('./comment.js');
 
 const NasaSchema = new Schema ({
     title: String, 
-    image_url: String, 
+    nasa_id: String,
+    image_url: String,  
     description_508: String,
     comments: [Comment.schema]
 })
