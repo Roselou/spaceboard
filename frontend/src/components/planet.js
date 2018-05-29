@@ -20,7 +20,7 @@ class Planet extends Component {
             return <div key={item.data[0].nasa_id}> 
                 <h3> {item.data[0].title} </h3>
                 <img controls src={item.links[0].href} alt="NASA Planet" width="620" />
-                <p> {item.data[0].description} </p>        
+                <p> {item.data[0].description_508} </p>        
             </div>
         })
         return(

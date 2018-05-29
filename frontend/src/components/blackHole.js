@@ -9,7 +9,7 @@ class BlackHole extends Component {
 
     componentDidMount = () => {
         let nasaId = this.props.match.params.nasa_id
-        fetch(`https://images-api.nasa.gov/search?q=blackhole&media_type=image/api/nasa/${nasaId}`)
+        fetch(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
             .then(res => res.json())
             .then(nasa =>
                 this.setState({ nasa }))

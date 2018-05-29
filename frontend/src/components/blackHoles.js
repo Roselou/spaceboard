@@ -6,7 +6,7 @@ class BlackHoles extends Component {
     }
 
     componentDidMount = () => {
-        fetch('https://images-api.nasa.gov/search?q=blackhole&media_type=image')
+        fetch('https://images-api.nasa.gov/search?q=black-hole&media_type=image')
         .then(res => res.json())
         .then(data => 
             this.setState({blackhole: data.collection.items}))
@@ -19,7 +19,7 @@ class BlackHoles extends Component {
             return <div key =  {item.data[0].nasa_id}>
             <h3> {item.data[0].title} </h3> 
             <img src={item.links[0].href} alt = "Nasa Blackhole" width = "600" height="400" />
-            <p> {item.data[0].description} </p>
+            <p> {item.data[0].description_508} </p>
             </div>
         })
 
