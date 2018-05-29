@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import BlackHoles from './components/blackHoles'
+import BlackHole from './components/blackHole'
 
 class App extends Component {
   render() {
@@ -10,7 +11,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">SPACE BOARD</h1>
         </header>
-        <BlackHoles />
+        <BlackHole />
         
       </div>
     );

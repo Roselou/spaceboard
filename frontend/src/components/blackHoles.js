@@ -6,13 +6,13 @@ class BlackHoles extends Component {
     }
 
     componentDidMount = () => {
-       
         fetch('https://images-api.nasa.gov/search?q=blackhole&media_type=image')
         .then(res => res.json())
         .then(data => 
             this.setState({blackhole: data.collection.items}))
     }
  
+    
     render(){
         console.log('Black Holes', this.state.blackhole)
         let blackHoleResult = this.state.blackhole.map(item => {
