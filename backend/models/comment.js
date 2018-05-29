@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 Schema = mongoose.Schema; 
 
 const CommentSchema = new Schema ({
-    username: String, 
-    Comments: String, 
+    name: String, 
+    comments: String, 
 })
 
 const Comment = mongoose.model('Comment', CommentSchema);
