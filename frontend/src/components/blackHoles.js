@@ -18,7 +18,7 @@ class BlackHoles extends Component {
         let blackHoleResult = this.state.blackhole.map(item => {
             return <div key =  {item.data[0].nasa_id}>
             <h3> {item.data[0].title} </h3> 
-            <img src={item.links[0].href} alt = "Nasa Blackhole" width = "600" height="400" />
+            <img src={item.links[0].href} alt = "Nasa Blackhole" width = "25%" height="25%" />
             <p> {item.data[0].description_508} </p>
             </div>
         })

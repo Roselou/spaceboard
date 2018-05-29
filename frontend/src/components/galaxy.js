@@ -21,7 +21,7 @@ class Galaxy extends Component {
         let galaxyResult = this.state.galaxy.map(item => {
             return <div key = {item.data[0].nasa_id}>
             <h3> {item.data[0].title} </h3>
-            <img controls src={item.links[0].href} alt="NASA Galaxy" width="620"/>
+            <img controls src={item.links[0].href} alt="NASA Galaxy" width = "200" height="200"/>
             <p> {item.data[0].description_508} </p>
             </div>
         })
