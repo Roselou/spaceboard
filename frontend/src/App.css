@@ -11,8 +11,14 @@
   -webkit-text-fill-color: transparent;
 }
 
+h4{
+  color: white;
+  font-family: 'Abel', sans-serif;
+  font-size: 3em;
+  text-decoration: none;
+}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.icon{
+  float: left;
+  padding: 1.5em;
 }
