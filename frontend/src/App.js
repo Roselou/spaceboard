@@ -6,9 +6,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-       
-          <h1 className="App-title">SPACE BOARD</h1>
+      <div >
+        <header>
+          <h5 className="user"> Login </h5>
+          <h5 className="signup"> Signup </h5>
+        </header>
+          <h1 className="App-title App">SPACE BOARD</h1>
         
         
       </div>
