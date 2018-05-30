@@ -1,5 +1,6 @@
 const models = require('../models');
 const Nasa = models.Nasa
+const findOrCreate = require('mongoose-findorcreate');
 
 function index(req, res) {
     Nasa.find({}, function(err, foundNasa){
@@ -9,20 +10,24 @@ function index(req, res) {
 }
 
 function show(req, res){
-    console.log('nasa show controller')
-    Nasa.findById(req.params.nasa_id, function(err, showNasa){
-        if (err) res.send('Nasa show controller', err);
-        res.json(showNasa);
+    Nasa.findOne(req.params.nasa_id, function(err, showNasa){
+        if (err) {
+            res.send('Nasa show controller error', err);
+        } else {
+            res.json(showNasa);
+        }
+       
     })
 }
 
 function create(req, res){
-    Nasa.create({nasa_id: req.params.nasa_id}, function(err, newNasa){
+    Nasa.findOrCreate({nasa_id: req.params.nasa_id}, function(err, nasaObj){
+        console.log('New nasaObj inserted', nasaObj)
         if(err){
             res.send('Nasa Create Controller Err:', err);
         } else {
-            newNasa.save();
-            res.json(newNasa)
+            nasaObj.save();
+            res.json(nasaObj)
         }
     })
 }
