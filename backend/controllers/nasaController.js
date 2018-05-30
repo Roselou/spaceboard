@@ -9,11 +9,21 @@ function index(req, res) {
 }
 
 function show(req, res){
-    let nasaID = req.params.nasa_id
-    console.log('nasa show controller', nasaID)
-    Nasa.findById(nasaID, function(err, showNasa){
+    console.log('nasa show controller')
+    Nasa.findById(req.params.nasa_id, function(err, showNasa){
         if (err) res.send('Nasa show controller', err);
         res.json(showNasa);
+    })
+}
+
+function create(req, res){
+    Nasa.create({nasa_id: req.params.nasa_id}, function(err, newNasa){
+        if(err){
+            res.send('Nasa Create Controller Err:', err);
+        } else {
+            newNasa.save();
+            res.json(newNasa)
+        }
     })
 }
 
@@ -28,5 +38,6 @@ function update(req, res) {
 module.exports = {
     index: index, 
     show: show, 
+    create: create,
     update: update,
 }

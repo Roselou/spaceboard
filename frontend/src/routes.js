@@ -8,7 +8,7 @@ import Planet from './components/planet';
 import Star from './components/stars';
 import Galaxy from './components/galaxy';
 import Comet from './components/Comets';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class Routes extends Component {
     render(){

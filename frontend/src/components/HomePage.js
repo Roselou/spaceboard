@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import SingleNasa from './singleNasa';
-import Routes from '../routes';
+
 class HomePage extends Component{
     render(){
         console.log("Welcome to space")

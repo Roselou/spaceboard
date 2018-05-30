@@ -12,16 +12,12 @@ function index(req, res){
         }
     })
 }
-
-function show(req, res){
-    let nasaID = req.params.nasa_id
-    Comment.findById(nasaID, function(err, showComment){
-        if(err) res.send('Comment show controller', err);
-        res.json(showComment)
-    })
-}
-
-
+function show(req, res) {
+        Comment.findById(req.params.comment_id, function (err, showComment) {
+            if (err) res.send('Comment show controller', err);
+            res.json(showComment)
+        })
+    }
 
 function create(req, res) {
     Nasa.findOne({nasa_id: req.params.nasa_id}, function(err, nasaSuccess){
@@ -45,6 +41,18 @@ function create(req, res) {
         }
     })
 }
+
+function update(req, res){
+    Nasa.findByIdAndUpdate(req.params.nasa_id, {$set: req.body}, function(err, updatedNasa){
+        if (err){
+            console.log('nasa update controller err', err)
+        } else{
+            res.json(updatedNasa)
+        }
+    })
+}
+
+
 
 // function create(req, res) {
 //     Nasa.find({
@@ -121,5 +129,6 @@ module.exports = {
     index: index, 
     create: create, 
     show: show, 
+    update: update,
     destroy: destroy, 
 };

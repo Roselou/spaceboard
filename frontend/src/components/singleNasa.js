@@ -8,22 +8,22 @@ class singleNasa extends Component {
     }
 
     componentDidMount = () => {
-        console.log(123, this.state)
+        // console.log(123, this.state)
         // let nasaId = 'PIA22085'
         let nasaId = this.props.match.params.nasa_id
+        console.log(nasaId)
         // console.log(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
-        fetch(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
+        fetch(`http://localhost:8080/api/nasa/${nasaId}`)
             .then(res => res.json())
-            .then(nasa =>
-                this.setState([nasa ]))
+            .then(nasa => this.setState(nasa))
     }
 
     handleNameChange = (e) => {
     	    this.setState({
     	        name: e.target.value
     	    });
-
-    	}
+        }
+        
     handleCommentChange = (e) => {
         this.setState({
             comments: e.target.value
@@ -33,9 +33,9 @@ class singleNasa extends Component {
 
     createComment = (e) => {
         e.preventDefault();
-        console.log(234, this.state)
+        // console.log(234, this.state)
         let nasaId = this.props.match.params.nasa_id;
-        fetch(`https://images-api.nasa.gov/search?q=blackhole&media_type=image/api/nasa/${nasaId}/comments`, 
+        fetch(`http://localhost:8080/api/nasa/${nasaId}/comments`,
         {
             method: 'POST',
             headers: {
@@ -63,6 +63,8 @@ class singleNasa extends Component {
     }
 
     render() {
+        console.log('STATE', this.state);
+
          let commentsResult = this.state.nasa.comments 
          ? this.state.nasa.comments.map(comment => {
             return ( <div className = 'commentContainer' >
@@ -75,22 +77,23 @@ class singleNasa extends Component {
         : < h2 > Loading... </h2>
 
         
-        let singleNasa = this.state.nasa.map(item => {
-            let nasa_id = this.item.data[0].nasa_id
-            return <div key =  {nasa_id}>
-            <h3> {this.item.data[0].title} </h3> 
-            <img src={this.item.links[0].href} alt="Nasa Blackhole" width="25%" height="25%" />
-            <p> {this.item.data[0].description_508} </p>
-            </div>
-        })
+        // let singleNasa = this.state.nasa.map(item => {
+        //     let nasa_id = this.item.data[0].nasa_id
+        //     return <div key =  {nasa_id}>
+        //     <h3> {this.item.data[0].title} </h3> 
+        //     <img src={this.item.links[0].href} alt="Nasa Blackhole" width="25%" height="25%" />
+        //     <p> {this.item.data[0].description_508} </p>
+        //     </div>
+        // })
+        let nasaId = this.props.match.params.nasa_id;
+        let imgUrl = `https://images-assets.nasa.gov/image/${nasaId}/${nasaId}~thumb.jpg`
+
 
         return ( 
             <div>
-                <div key = {this.state.nasa.nasa_id} >
-                <h3 > {this.state.nasa.title} </h3>  
-                <img src = {this.state.nasa.href} width = "25%" height = "25%" />
-                <p> {this.state.nasa.description_508} </p> 
-                </div>
+                <img src={imgUrl} alt="From NASA" />
+
+            <hr />  
             < div className = "row" >
                 <form className = "col s12" onSubmit = {this.createComment} >
                     <div className = "row" >
@@ -104,6 +107,7 @@ class singleNasa extends Component {
                                 value = {this.state.name}
                                 placeholder = "Name" />
                         </div>
+                        
                         <div className = "input-field col s6" >
                             <input
                                 id = "icon_prefix2"
