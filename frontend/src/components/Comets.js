@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import '../App.css'
 
 class Comet extends Component {
     state = {
@@ -18,9 +20,10 @@ class Comet extends Component {
     render() {
         console.log('comet', this.state.comet)
         let cometResult = this.state.comet.map(item => {
+            let nasa_id = item.data[0].nasa_id
             return <div key = {item.data[0].nasa_id} >
-                <h3 > {item.data[0].title} </h3> 
-                <img src = {item.links[0].href} alt = "NASA Star" width = "200" height="200" />
+                <h3 className = "title" > {item.data[0].title} </h3> 
+                <Link to={`/api/nasa/${nasa_id}`}><img className = "img" src = {item.links[0].href} alt = "NASA Star"/></Link>
                 <p> {item.data[0].description_508} </p>
                 </div>
         })

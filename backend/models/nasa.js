@@ -6,8 +6,8 @@ const findOrCreate = require('mongoose-findorcreate');
 const NasaSchema = new Schema ({
     title: String, 
     nasa_id: String,
-    image_url: String,  
-    description_508: String,
+    imageURL: String,  
+    description508: String,
     comments: [Comment.schema]
 })
 

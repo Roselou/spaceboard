@@ -2,6 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const spaceboardRouter = require('./config/routes');
+// const passport = require('passport');
+// var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+
+//OAUTH PASSPORT
+// passport.use(new GoogleStrategy({
+//     consumerKey;
+// }))
 
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
@@ -19,6 +26,6 @@ app.get('/', function(req, res){
 app.use(spaceboardRouter);
 
 //Listen here
-app.listen(process.env.PORT || 8080, function(){
+app.listen(process.env.API_PORT || 8080, function(){
     console.log('server running on 8080')
 });

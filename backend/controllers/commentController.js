@@ -1,6 +1,8 @@
 const models = require('../models');
 const Comment = models.Comment
 const Nasa = models.Nasa
+const findOrCreate = require('mongoose-findorcreate');
+
 
 function index(req, res){
     let nasaID = req.params.nasa_id
@@ -13,30 +15,60 @@ function index(req, res){
     })
 }
 function show(req, res) {
-        Comment.findById(req.params.comment_id, function (err, showComment) {
-            if (err) res.send('Comment show controller', err);
+        Comment.findOrCreate({nasaID: req.params.comment_id}, function (err, showComment) {
+            if (err){
+                res.send('Comment show controller', err);
+        }else {
+            showComment.save()
             res.json(showComment)
+        }
         })
     }
 
+
+// function create(req, res){
+//     Comment.create(req.body, function(err, commentSuccess){
+//         if(err){
+//             console.log("Comment Create Controller Error", err)
+//         } else{
+//             Nasa.findById(req.params.nasa_id, function(err, nasaWin){
+//                 if(err){
+//                     console.log("Comment create controller error inside nasa.findById", err)
+//                 } else{
+//                     NasaWin.comments.push(commentSuccess);
+//                     nasaWin.save();
+//                     res.json(commentSuccess)
+//                 }
+//             })
+//         }
+//     })
+// }
 function create(req, res) {
+    console.log('in commentcontroller')
     Nasa.findOne({nasa_id: req.params.nasa_id}, function(err, nasaSuccess){
+        console.log('req.params:', req.params)
 
         function createComment(req, res, newNasa) {
             Comment.create(req.body, function(err, commentSuccess) {
                 if (commentSuccess) {
+                    console.log('comment success', commentSuccess)
                     newNasa.comments.push(commentSuccess);
                     newNasa.save();
+                    console.log('newNasa success', newNasa)
                     res.json(newNasa);
                 }
             })
         }
 
         if (nasaSuccess === null) {
+            console.log(8989, req.params.nasa_id)
             Nasa.create({nasa_id: req.params.nasa_id}, function(err, newNasa) {
+                
+                console.log('newNasa  is null', newNasa)
                 createComment(req, res, newNasa)
             });
         } else {
+            console.log('newNasa is not null (ie exists in db)', newNasa)
             createComment(req, res, nasaSuccess);
         }
     })

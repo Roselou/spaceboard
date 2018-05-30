@@ -5,8 +5,8 @@ const nasaController = require('../controllers/nasaController');
 
 //Nasa Routes
 router.get('/api/nasa', nasaController.index);
+// router.post('/api/nasa', nasaController.create);
 router.get('/api/nasa/:nasa_id', nasaController.show);
-router.post('/api/nasa/', nasaController.create);
 router.put('/api/nasa/:nasa_id', nasaController.update);
 
 //Comment Routes

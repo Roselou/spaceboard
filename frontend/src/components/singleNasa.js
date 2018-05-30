@@ -1,21 +1,25 @@
 import React, {Component} from 'react'
+import '../App.css';
 
 class singleNasa extends Component {
     state = {
-        nasa: [],
-        comments: '',
-        name:'',
+        nasa: {},
+        comments: [],
+        name: [],
     }
 
     componentDidMount = () => {
         // console.log(123, this.state)
         // let nasaId = 'PIA22085'
-        let nasaId = this.props.match.params.nasa_id
+        let nasaId = this.props.match.params.nasa_id;
         console.log(nasaId)
         // console.log(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
         fetch(`http://localhost:8080/api/nasa/${nasaId}`)
             .then(res => res.json())
-            .then(nasa => this.setState(nasa))
+            .then(nasa => {
+                this.setState( {nasa })
+        })
+        .catch(err => console.log('Single Nasa Page err', err))
     }
 
     handleNameChange = (e) => {
@@ -35,17 +39,16 @@ class singleNasa extends Component {
         e.preventDefault();
         // console.log(234, this.state)
         let nasaId = this.props.match.params.nasa_id;
-        fetch(`http://localhost:8080/api/nasa/${nasaId}/comments`,
-        {
+        fetch(`http://localhost:8080/api/nasa/${nasaId}/comments`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                name: this.state.name,
-                comments: this.state.comments,
-            })
+            // body: JSON.stringify({
+            //     name: this.state.nasa.name,
+            //     comments: this.state.nasa.comments,
+            // })
         }).then(res => {
             return res.json();
         }).then(json => {
@@ -53,7 +56,7 @@ class singleNasa extends Component {
             this.setState({
                 nasa: {
                     ...this.state.nasa,
-                    comments: [...this.state.nasa.comments, json]
+                    comments: [...this.state.nasa.comments, json],
                 },
                 name: '',
                 comments: '',
@@ -63,18 +66,24 @@ class singleNasa extends Component {
     }
 
     render() {
-        console.log('STATE', this.state);
+        console.log('STATE', this.state.comments);
 
-         let commentsResult = this.state.nasa.comments 
-         ? this.state.nasa.comments.map(comment => {
-            return ( <div className = 'commentContainer' >
-                <div key = {comment._id}className = "comments" >
-                <p> < strong > {comment.name} </strong>: {comment.comments} </p >
+        // 1 check this.state
+        //2  check for comments
+            // 3 is it array? single string?
+            //4  if array, map through, append to the dom (eg <div>s)
+            //5  if string - why? and how to put in array format (to do the step above)
+
+         let commentsResult = this.state.comments
+         ? this.state.comments.map(comment => {
+            return ( <div className = 'commentContainer title' >
+                <div key = {comment._id} className = "comments" >
+                <p className="title" > < strong > {this.state.name} </strong>: {comment[0]} </p >
                 </div> 
                 </div>
         );
         }) 
-        : < h2 > Loading... </h2>
+        : <h2> Be the first to comment... </h2>
 
         
         // let singleNasa = this.state.nasa.map(item => {
@@ -90,14 +99,15 @@ class singleNasa extends Component {
 
 
         return ( 
-            <div>
-                <img src={imgUrl} alt="From NASA" />
+            <div className="title">
+                <img className="single-img" src={imgUrl} alt="From NASA" />
+               
 
             <hr />  
-            < div className = "row" >
+            < div className = "row title" >
                 <form className = "col s12" onSubmit = {this.createComment} >
                     <div className = "row" >
-                        <div className = "input-field col s6" >
+                        <div className = "input-field col s6 title" >
                             <input 
                                 id = "icon_prefix" 
                                 type = "text" 
@@ -108,7 +118,7 @@ class singleNasa extends Component {
                                 placeholder = "Name" />
                         </div>
                         
-                        <div className = "input-field col s6" >
+                        <div className = "input-field col s6 title" >
                             <input
                                 id = "icon_prefix2"
                                 className = "materialize-textarea"
@@ -120,7 +130,7 @@ class singleNasa extends Component {
                     <button className = "btn-floating btn-small waves-effect waves-light" > + </button >
                 </form> 
             </div>
-                {commentsResult}
+            {commentsResult}
             </div>
 
         )

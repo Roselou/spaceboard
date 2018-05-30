@@ -18,8 +18,8 @@ class Planet extends Component {
         console.log('planets', this.state.planet)
         let planetResult = this.state.planet.map(item => {
             return <div key={item.data[0].nasa_id}> 
-                <h3> {item.data[0].title} </h3>
-                <img controls src={item.links[0].href} alt="NASA Planet" width = "200" height="200" />
+                <h3 className="title"> {item.data[0].title} </h3>
+                <img className="img"controls src={item.links[0].href} alt="NASA Planet"  />
                 <p> {item.data[0].description_508} </p>        
             </div>
         })

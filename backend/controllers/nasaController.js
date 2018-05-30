@@ -10,10 +10,13 @@ function index(req, res) {
 }
 
 function show(req, res){
-    Nasa.findOne(req.params.nasa_id, function(err, showNasa){
+    console.log('in nasa/show', req.params)
+    Nasa.find({nasa_id: req.params.nasa_id}, function(err, showNasa){
         if (err) {
-            res.send('Nasa show controller error', err);
+            console.log(2222222222, err)
+            res.send({error: 'Nasa show controller error'});
         } else {
+            console.log(11111111, showNasa)
             res.json(showNasa);
         }
        
@@ -21,11 +24,14 @@ function show(req, res){
 }
 
 function create(req, res){
-    Nasa.findOrCreate({nasa_id: req.params.nasa_id}, function(err, nasaObj){
+    console.log('in nasa/create', req.body)
+    newNasa = req.body;
+    Nasa.findOrCreate(newNasa, function(err, nasaObj){
         console.log('New nasaObj inserted', nasaObj)
         if(err){
             res.send('Nasa Create Controller Err:', err);
         } else {
+            console.log('creating new nasa', nasaObj)
             nasaObj.save();
             res.json(nasaObj)
         }

@@ -9,6 +9,7 @@ import galaxy from '../imgs/milky-way.png';
 import '../App.css'
 
 class HomePage extends Component{
+
     render(){
         console.log("Welcome to space")
         return(

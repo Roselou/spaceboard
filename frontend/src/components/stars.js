@@ -17,8 +17,8 @@ class Star extends Component {
         console.log('stars', this.state.stars)
         let starResult = this.state.stars.map(item => {
             return <div key={item.data[0].nasa_id}>
-                <h3> {item.data[0].title} </h3>
-                <img src={item.links[0].href} alt="NASA Star" width = "200" height="200" />
+                <h3 className="title"> {item.data[0].title} </h3>
+                <img className="img"src={item.links[0].href} alt="NASA Star"  />
                 <p> {item.data[0].description} </p>   
             </div>
         })
