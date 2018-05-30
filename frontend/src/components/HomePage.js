@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import blackhole from '../imgs/black-hole2.png';
-import star from '../imgs/star.png';
+import stars from '../imgs/stars.png';
 import nebula from '../imgs/nebula.png';
 import solarsystem from '../imgs/solar-system.png';
 import comet from '../imgs/comet.png';
@@ -21,7 +21,7 @@ class HomePage extends Component{
                 <h4 className="col s4" > Planets </h4> 
                 <Link to='/api/nasa/galaxies'> <img className="col s6 icon" src={galaxy} alt="galacy icon"/> </Link>
                 <h4 className="col s4" > Galaxies </h4>
-                <Link to='/api/nasa/stars' > <img className="col s6 icon"src={star} alt="star icon" /></Link>
+                <Link to='/api/nasa/stars' > <img className="col s6 icon"src={stars} alt="star icon" /></Link>
                 <h4 className="col s4" > Stars </h4>
                 <Link to='/api/nasa/comets'> <img className="col s6 icon"src={comet} alt="comet icon" /> </Link>
                 <h4 className="col s4" > Comets </h4>
