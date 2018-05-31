@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Planet extends Component {
     state = {
@@ -37,10 +38,10 @@ class Planet extends Component {
     render(){
         console.log('planets', this.state.planet)
         let planetResult = this.state.planet.map(item => {
+             let nasa_id = item.data[0].nasa_id
             return <div key={item.data[0].nasa_id}> 
                 <h3 className="title"> {item.data[0].title} </h3>
-                <img className="img"controls src={item.links[0].href} alt="NASA Planet"  />
-                <p> {item.data[0].description_508} </p>        
+                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img"controls src={item.links[0].href} alt="NASA Planet"/></Link>
             </div>
         })
         return(

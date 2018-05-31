@@ -43,8 +43,7 @@ class Comet extends Component {
             let nasa_id = item.data[0].nasa_id
             return <div key = {item.data[0].nasa_id} >
                 <h3 className = "title" > {item.data[0].title} </h3> 
-                <Link to={`/api/nasa/${nasa_id}`}><img className = "img" src = {item.links[0].href} alt = "NASA Star"/></Link>
-                <p> {item.data[0].description_508} </p>
+                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa}><img className = "img" src = {item.links[0].href} alt = "NASA Star"/></Link>
                 </div>
         })
         return ( <div > 

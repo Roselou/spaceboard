@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class Star extends Component {
     state = {
@@ -36,10 +37,10 @@ class Star extends Component {
     render(){
         console.log('stars', this.state.stars)
         let starResult = this.state.stars.map(item => {
+             let nasa_id = item.data[0].nasa_id
             return <div key={item.data[0].nasa_id}>
                 <h3 className="title"> {item.data[0].title} </h3>
-                <img className="img"src={item.links[0].href} alt="NASA Star"  />
-                <p> {item.data[0].description} </p>   
+                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img"src={item.links[0].href} alt="NASA Star"/></Link>
             </div>
         })
         return(
