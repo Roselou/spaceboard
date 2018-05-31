@@ -6,7 +6,7 @@ const findOrCreate = require('mongoose-findorcreate');
 
 function index(req, res){
     let nasaID = req.params.nasa_id
-    Nasa.findById(nasaID, function(err, foundNasa){
+    Nasa.find({nasa_id: req.params.nasa_id}, function(err, foundNasa){
         if (err) res.send('Comment index Controller', err);
         else{
             let comments = foundNasa.comments
@@ -15,7 +15,7 @@ function index(req, res){
     })
 }
 function show(req, res) {
-        Comment.findOrCreate({nasaID: req.params.comment_id}, function (err, showComment) {
+        Comment.find({comment_id: req.params.comment_id}, function (err, showComment) {
             if (err){
                 res.send('Comment show controller', err);
         }else {
@@ -27,14 +27,14 @@ function show(req, res) {
 
 
 // function create(req, res){
-//     Comment.create(req.body, function(err, commentSuccess){
+//     Comment.findOrCreate({nasa_id: req.params.nasa_id}, function(err, commentSuccess){
 //         if(err){
 //             console.log("Comment Create Controller Error", err)
 //         } else{
 //             Nasa.findById(req.params.nasa_id, function(err, nasaWin){
 //                 if(err){
 //                     console.log("Comment create controller error inside nasa.findById", err)
-//                 } else{
+//                 } else {
 //                     NasaWin.comments.push(commentSuccess);
 //                     nasaWin.save();
 //                     res.json(commentSuccess)
@@ -43,6 +43,24 @@ function show(req, res) {
 //         }
 //     })
 // }
+
+// function create(req, res) {
+//     Comment.create(req.body, function (err, commentSuccess) {
+//         console.log(req)
+//         if (err) console.log('Comment create controller: ', err);
+//         else {
+//             Nasa.findById(req.params.nasa_id, function (err, nasaSuccess) {
+//                 if (err) res.send('Comment create controller: ', err);
+//                 else {
+//                     nasaSuccess.comments.push(commentSuccess);
+//                     nasaSuccess.save();
+//                     res.json(commentSuccess);
+//                 }
+//             })
+//         }
+//     });
+// }
+
 function create(req, res) {
     console.log('in commentcontroller')
     Nasa.findOne({nasa_id: req.params.nasa_id}, function(err, nasaSuccess){
@@ -54,7 +72,6 @@ function create(req, res) {
                     console.log('comment success', commentSuccess)
                     newNasa.comments.push(commentSuccess);
                     newNasa.save();
-                    console.log('newNasa success', newNasa)
                     res.json(newNasa);
                 }
             })
@@ -68,7 +85,7 @@ function create(req, res) {
                 createComment(req, res, newNasa)
             });
         } else {
-            console.log('newNasa is not null (ie exists in db)', newNasa)
+            console.log('newNasa is not null (ie exists in db)', nasaSuccess)
             createComment(req, res, nasaSuccess);
         }
     })
