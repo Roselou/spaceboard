@@ -67,6 +67,7 @@ class singleNasa extends Component {
         let commentID = this.props.match.comment_id;
         fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
             method: 'DELETE',
+            mode: 'CORS',
             headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -92,6 +93,7 @@ class singleNasa extends Component {
         let commentID = this.props.match.comment_id;
         fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
             method: 'PUT',
+            mode: 'CORS',
             headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json',
@@ -125,9 +127,9 @@ class singleNasa extends Component {
          ? this.state.comments.map((comment, idx) => {
             return ( <div key = {comment._id} className = 'commentContainer title' >
                 <div className = "comments" >
-                <h2 className="title" > < strong > {comment.name} </strong>: {comment.comments} </h2 >
-                <button onClick={this.deleteComment}> Delete </button>
-                <button onClick={this.updateComment}> Upate </button>
+                <h4 className="title" > < strong > {comment.name} </strong>: {comment.comments} </h4 >
+                <button className = "waves-effect waves-light btn grey darken-2" onClick={() =>this.deleteComment(idx)}> Delete </button>
+                <button className = "waves-effect waves-light btn grey darken-3" onClick={() => this.updateComment(idx)}> Update </button>
                 </div>
                 </div>
         );
@@ -171,12 +173,13 @@ class singleNasa extends Component {
                             <input 
                                 id = "icon_prefix2"
                                 className = "materialize-textarea title"
+                                type="text"
                                 onChange = {this.handleCommentChange}
                                 value = {this.state.currentComment}
                                 placeholder = "Comment..." />
                         </div>
                     </div> 
-                    < button className = "waves-effect waves-light btn indigo lighten-3" > Submit Comment </button >
+                    < button className = "waves-effect waves-light btn indigo lighten-2" > Add Comment </button >
                 </form> 
             </div>
             {commentsResult}

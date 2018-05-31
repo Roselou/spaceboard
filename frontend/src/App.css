@@ -7,7 +7,7 @@
   font-size: 8em;
   font-family: 'Chathura', sans-serif;
   letter-spacing: .2em;
-  background: -webkit-linear-gradient(90deg, #0e2ed0 0%, #a607bf 80%);
+  background: -webkit-linear-gradient(90deg, #0e2ed0 0%, #089420 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-top: -20px;
@@ -27,7 +27,7 @@
   padding-left: 5px;
   margin-left: 20px;
   margin-top: 20px;
-  border-image: linear-gradient(90deg, #0e2ed0 0%, #a607bf 80%);
+  border-image: linear-gradient(90deg, #0e2ed0 0%, #089420 80%);
   border-image-slice: 1 
 }
 
@@ -46,7 +46,7 @@
   padding-right: 5px;
   margin-top: 20px;
   text-align: right;
-  border-image: linear-gradient(270deg, #0e2ed0 0%, #a607bf 80%);
+  border-image: linear-gradient(270deg, #0e2ed0 0%, #089420 80%);
   border-image-slice: 1
 }
 
@@ -82,7 +82,7 @@ h5 {
 }
 
 .single-img {
-  border-radius: 120px;
+  border-radius: 60px;
   margin: auto;
   width: 50%;
   display: block;
@@ -96,4 +96,8 @@ h5 {
   /* display: inline-block; */
   margin-left: auto;
   margin-right: auto;
+}
+
+.btn {
+  margin-left: 15px;
 }

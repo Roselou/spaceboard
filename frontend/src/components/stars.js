@@ -35,7 +35,7 @@ class Star extends Component {
         })
     }
     render(){
-        console.log('stars', this.state.stars)
+        console.log('stars', this.state.stars[0])
         let starResult = this.state.stars.map(item => {
              let nasa_id = item.data[0].nasa_id
             return <div key={item.data[0].nasa_id}>
