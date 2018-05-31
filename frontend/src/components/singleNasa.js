@@ -5,6 +5,7 @@ class singleNasa extends Component {
     state = {
         nasa: {},
         comments: [],
+        currentComment: '',
         name: ''
     }
 
@@ -30,7 +31,7 @@ class singleNasa extends Component {
         
     handleCommentChange = (e) => {
         this.setState({
-            comments: [e.target.value]
+            currentComment: e.target.value
         });
 
     }
@@ -47,28 +48,18 @@ class singleNasa extends Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
-                comments: this.state.comments,
+                comments: this.state.currentComment,
             })
         }).then(res => {
             return res.json()
         }).then(json => {
 
-            console.log('json is ', json)
-            console.log('state is', this.state)
-
-            // this.setState({
-            //     nasa: {
-            //         ...this.state.nasa,
-            //         comments: [...this.state.nasa.comments, json],
-            //         name: [...this.state.nasa.name, json]
-            //     },
-            //     name: '',
-            //     comments: '',
-            // })
             this.setState({
-
+                currentComment: '',
+                name: '',
+                comments: [...this.state.comments, this.state.currentComment]
             })
-
+            console.log(11, this.state)
         })
     }
 
@@ -82,9 +73,9 @@ class singleNasa extends Component {
             //5  if string - why? and how to put in array format (to do the step above)
 
          let commentsResult = this.state.comments
-         ? this.state.comments.map(comment => {
-            return ( <div className = 'commentContainer title' >
-                <div key = {comment._id} className = "comments" >
+         ? this.state.comments.map((comment, idx) => {
+            return ( <div key = {comment._id} className = 'commentContainer title' >
+                <div className = "comments" >
                 <p className="title" > < strong > {comment.name} </strong>: {comment.comments} </p >
                 </div> 
                 </div>
@@ -130,7 +121,7 @@ class singleNasa extends Component {
                                 id = "icon_prefix2"
                                 className = "materialize-textarea"
                                 onChange = {this.handleCommentChange}
-                                value = {this.state.comments}
+                                value = {this.state.currentComment}
                                 placeholder = "Comment..." />
                         </div>
                     </div> 
