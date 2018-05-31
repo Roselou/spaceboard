@@ -62,15 +62,6 @@ class singleNasa extends Component {
         })
     }
 
-    // deleteComment = () => {
-    //     let nasaID = this.props.match.params.nasa_id;
-    //     let commentID = this.state.comments._id;
-    //     fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
-    //         method: 'DELETE',
-    //         mode: 'CORS',
-    //     }).then(res => res)
-    // }
-
     deleteComment = (commentId) => {
         let nasaID = this.props.match.params.nasa_id;
         // let commentID = this.state.comments._id;
@@ -91,7 +82,7 @@ class singleNasa extends Component {
             // console.log('UPDATED COMMENTS:::::', updatedComments)
             this.setState({
                 nasa: {
-                    ...this.state.nasa,
+                    // ...this.state.nasa,
                     comments: updatedComments,
                 },
             })
@@ -102,13 +93,6 @@ class singleNasa extends Component {
 
 
     render() {
-        // console.log('STATE', this.state);
-
-        // 1 check this.state
-        //2  check for comments
-            // 3 is it array? single string?
-            //4  if array, map through, append to the dom (eg <div>s)
-            //5  if string - why? and how to put in array format (to do the step above)
 
          let commentsResult = this.state.comments
          ? this.state.comments.map((comment, idx) => {
@@ -124,15 +108,7 @@ class singleNasa extends Component {
         }) 
         : <h2> Be the first to comment... </h2>
 
-        
-        // let singleNasa = this.state.nasa.map(item => {
-        //     let nasa_id = this.item.data[0].nasa_id
-        //     return <div key =  {nasa_id}>
-        //     <h3> {this.item.data[0].title} </h3> 
-        //     <img src={this.item.links[0].href} alt="Nasa Blackhole" width="25%" height="25%" />
-        //     <p> {this.item.data[0].description_508} </p>
-        //     </div>
-        // })
+
         let nasaId = this.props.match.params.nasa_id;
         let imgUrl = `https://images-assets.nasa.gov/image/${nasaId}/${nasaId}~thumb.jpg`
 
