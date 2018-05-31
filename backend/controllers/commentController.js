@@ -155,23 +155,47 @@ function update(req, res){
 //     }
 // }
 
+// DELETE Version 2
+// function destroy(req, res) {
+//   TextPost.findById(req.params.post_id, function(err, post) {
+//     console.log(post);
+//     // Found the post, now find the comment
+//     var commentToDelete = post.comments.id(req.params.comment_id);
+//     if (commentToDelete) {
+//       commentToDelete.remove();
+//       // resave the album now that the song is gone
+//       post.save(function(err, saved) {
+//         console.log('REMOVED ', commentToDelete._id, 'FROM ', post.comments);
+//         res.json(commentToDelete);
+//       });
+//     } else {
+//       res.send(404);
+//     }
+//   });
+// }
+
 function destroy(req, res){
     let nasaID = req.params.nasa_id
+    console.log(req.params)
+    console.log('IN DESTROY 1')
     Nasa.findOne({nasa_id: nasaID}, function(err, foundNasa){
+        console.log('IN DESTROY 2')
         if(err) {
             res.send('Comment destroy controllers', err);
         }
         else {
-            let commentToDelete = foundNasa.comments._id
-            if(commentToDelete){
+
+            var commentToDelete = foundNasa.comments.id(req.params.comment_id);
+            if (commentToDelete) {
                 commentToDelete.remove();
                 foundNasa.save(function(err, saved){
-                    console.log('REMOVED', commentToDelete._id, 'From', foundNasa.comments);
+                    console.log('removed', commentToDelete._id, 'from', foundNasa.comments);
                     res.json(commentToDelete);
                 })
-            } else{
-                res.send(404)
+            } else {
+                res.send('Not found!')
             }
+           
         }
     })
 }

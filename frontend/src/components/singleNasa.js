@@ -13,7 +13,7 @@ class singleNasa extends Component {
         // console.log(123, this.state)
         // let nasaId = 'PIA22085'
         let nasaId = this.props.match.params.nasa_id;
-        console.log(nasaId)
+        // console.log(nasaId)
         // console.log(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
         fetch(`http://localhost:8080/api/nasa/${nasaId}`)
             .then(res => res.json())
@@ -40,6 +40,7 @@ class singleNasa extends Component {
         e.preventDefault();
         // console.log(234, this.state)
         let nasaId = this.props.match.params.nasa_id;
+        
         fetch(`http://localhost:8080/api/nasa/${nasaId}/comments`, {
             method: 'POST',
             headers: {
@@ -56,66 +57,52 @@ class singleNasa extends Component {
             this.setState({
                 currentComment: '',
                 name: '',
-                comments: [...this.state.comments, this.state.currentComment]
+                comments: json.comments
             })
-            console.log(11, this.state)
         })
     }
 
-    deleteComment = () => {
-        let nasaID = this.props.match.nasa_id;
-        let commentID = this.props.match.comment_id;
-        fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
+    // deleteComment = () => {
+    //     let nasaID = this.props.match.params.nasa_id;
+    //     let commentID = this.state.comments._id;
+    //     fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
+    //         method: 'DELETE',
+    //         mode: 'CORS',
+    //     }).then(res => res)
+    // }
+
+    deleteComment = (commentId) => {
+        let nasaID = this.props.match.params.nasa_id;
+        // let commentID = this.state.comments._id;
+        console.log(123, commentId)
+        // console.log('MY COMMENTS', this.state.comments._id)
+        fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentId}`, {
             method: 'DELETE',
             mode: 'CORS',
             headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: this.state.name,
-                    comments: this.state.currentComment,
-                })
-        }).then(res => {
-            return res.json();
-        }).then(json => {
-            this.setState({
-                currentComment: '',
-                name: '',
-                comments: [...this.state.comments, this.state.currentComment]
+                }
+        }).then(comments => {
+            let updatedComments = this.state.comments.filter(comment => {
+                return comment._id !== commentId;
             })
-            console.log('DELETE', this.state)
+
+            // console.log('UPDATED COMMENTS:::::', updatedComments)
+            this.setState({
+                nasa: {
+                    ...this.state.nasa,
+                    comments: updatedComments,
+                },
+            })
+            this.setState({})
+            //  console.log('DELETE ME', this.state.comments.comment_id)
         });
     }
 
-    updateComment = () => {
-        let nasaID = this.props.match.nasa_id;
-        let commentID = this.props.match.comment_id;
-        fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
-            method: 'PUT',
-            mode: 'CORS',
-            headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  name: this.state.name,
-                  comments: this.state.currentComment,
-              })
-          }).then(res => {
-              return res.json();
-          }).then(json => {
-              this.setState({
-                  currentComment: '',
-                  name: '',
-                  comments: [...this.state.comments, this.state.currentComment]
-              })
-              console.log('PUT', this.state)
-          });
-          }
 
     render() {
-        console.log('STATE', this.state);
+        // console.log('STATE', this.state);
 
         // 1 check this.state
         //2  check for comments
@@ -125,11 +112,12 @@ class singleNasa extends Component {
 
          let commentsResult = this.state.comments
          ? this.state.comments.map((comment, idx) => {
-            return ( <div key = {comment._id} className = 'commentContainer title' >
+            //  console.log('Idx is:::::', idx)
+            //  console.log('mapping:', comment)
+            return ( <div key = {idx} className = 'commentContainer title' >
                 <div className = "comments" >
                 <h4 className="title" > < strong > {comment.name} </strong>: {comment.comments} </h4 >
-                <button className = "waves-effect waves-light btn grey darken-2" onClick={() =>this.deleteComment(idx)}> Delete </button>
-                <button className = "waves-effect waves-light btn grey darken-3" onClick={() => this.updateComment(idx)}> Update </button>
+                <button className = "waves-effect waves-light btn grey darken-2" onClick={() => this.deleteComment(comment._id)} > Delete </button>
                 </div>
                 </div>
         );
@@ -149,7 +137,7 @@ class singleNasa extends Component {
         let imgUrl = `https://images-assets.nasa.gov/image/${nasaId}/${nasaId}~thumb.jpg`
 
         return ( 
-            <div key={nasaId} className="title">
+            <div className="title">
 
                 <img className="single-img" src={imgUrl} alt="From NASA" />
                
