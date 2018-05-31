@@ -17,34 +17,25 @@ class BlackHoles extends Component {
             this.setState({blackhole: data.collection.items}))   
     }
 
-    // makeNasa = () => {
-    //     let nasaID = this.params.match.nasa_id
-    //     let newTitle = this.state.blackhole.data[0].title 
-    //     let newID = this.state.blackhole.data[0].nasa_id
-    //     let newURL = this.state.blackhole.links[0].href
-    //     let newDesc = this.state.blackhole.data[0].description_508
-    //     fetch(`http://localhost:8080/api/nasa/${nasaID}`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify({
-    //             title: newTitle, 
-    //             nasaID: newID, 
-    //             imageURL: newURL,
-    //             description508: newDesc,
-    //         })
-    //     }).then(res => {
-    //         return res.json();
-    //     }).then(blackhole => {
-    //         this.setState({
-    //             blackhole: {
-    //                 ...blackhole,
-    //             }
-    //         })
-            
-    // }
+    makeNasa = () => {
+        let newTitle = this.state.blackhole.data[0].title 
+        let newID = this.state.blackhole.data[0].nasa_id
+        let newURL = this.state.blackhole.links[0].href
+        let newDesc = this.state.blackhole.data[0].description_508
+        fetch('http://localhost:8080/api/nasa/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                title: newTitle, 
+                nasaID: newID, 
+                imageURL: newURL,
+                description508: newDesc,
+            })
+        })
+}
 
  
     

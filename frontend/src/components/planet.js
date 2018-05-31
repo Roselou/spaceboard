@@ -14,6 +14,26 @@ class Planet extends Component {
             })
     }
 
+    makeNasa = () => {
+        let newTitle = this.state.planet.data[0].title
+        let newID = this.state.planet.data[0].nasa_id
+        let newURL = this.state.planet.links[0].href
+        let newDesc = this.state.planet.data[0].description_508
+        fetch('http://localhost:8080/api/nasa/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: newTitle,
+                nasaID: newID,
+                imageURL: newURL,
+                description508: newDesc,
+            })
+        })
+    }
+    
     render(){
         console.log('planets', this.state.planet)
         let planetResult = this.state.planet.map(item => {

@@ -5,7 +5,7 @@ class singleNasa extends Component {
     state = {
         nasa: {},
         comments: [],
-        name: [],
+        name: ''
     }
 
     componentDidMount = () => {
@@ -16,9 +16,9 @@ class singleNasa extends Component {
         // console.log(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
         fetch(`http://localhost:8080/api/nasa/${nasaId}`)
             .then(res => res.json())
-            .then(nasa => {
-                this.setState( {nasa })
-        })
+            .then(allComments => {
+                this.setState( {comments: allComments[0].comments} );
+             })
         .catch(err => console.log('Single Nasa Page err', err))
     }
 
@@ -30,7 +30,7 @@ class singleNasa extends Component {
         
     handleCommentChange = (e) => {
         this.setState({
-            comments: e.target.value
+            comments: [e.target.value]
         });
 
     }
@@ -45,28 +45,35 @@ class singleNasa extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            // body: JSON.stringify({
-            //     name: this.state.nasa.name,
-            //     comments: this.state.nasa.comments,
-            // })
+            body: JSON.stringify({
+                name: this.state.name,
+                comments: this.state.comments,
+            })
         }).then(res => {
-            return res.json();
+            return res.json()
         }).then(json => {
 
+            console.log('json is ', json)
+            console.log('state is', this.state)
+
+            // this.setState({
+            //     nasa: {
+            //         ...this.state.nasa,
+            //         comments: [...this.state.nasa.comments, json],
+            //         name: [...this.state.nasa.name, json]
+            //     },
+            //     name: '',
+            //     comments: '',
+            // })
             this.setState({
-                nasa: {
-                    ...this.state.nasa,
-                    comments: [...this.state.nasa.comments, json],
-                },
-                name: '',
-                comments: '',
+
             })
 
         })
     }
 
     render() {
-        console.log('STATE', this.state.comments);
+        console.log('STATE', this.state);
 
         // 1 check this.state
         //2  check for comments
@@ -78,7 +85,7 @@ class singleNasa extends Component {
          ? this.state.comments.map(comment => {
             return ( <div className = 'commentContainer title' >
                 <div key = {comment._id} className = "comments" >
-                <p className="title" > < strong > {this.state.name} </strong>: {comment[0]} </p >
+                <p className="title" > < strong > {comment.name} </strong>: {comment.comments} </p >
                 </div> 
                 </div>
         );

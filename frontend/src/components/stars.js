@@ -12,7 +12,27 @@ class Star extends Component {
             this.setState({ stars: data.collection.items })
         })
     }
-    
+
+
+    makeNasa = () => {
+        let newTitle = this.state.stars.data[0].title
+        let newID = this.state.stars.data[0].nasa_id
+        let newURL = this.state.stars.links[0].href
+        let newDesc = this.state.stars.data[0].description_508
+        fetch('http://localhost:8080/api/nasa/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: newTitle,
+                nasaID: newID,
+                imageURL: newURL,
+                description508: newDesc,
+            })
+        })
+    }
     render(){
         console.log('stars', this.state.stars)
         let starResult = this.state.stars.map(item => {
