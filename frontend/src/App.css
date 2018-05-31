@@ -7,7 +7,7 @@
   font-size: 8em;
   font-family: 'Chathura', sans-serif;
   letter-spacing: .2em;
-  background: -webkit-linear-gradient(90deg, #5a73f1 0%, #bc07c2e7 100%);
+  background: -webkit-linear-gradient(90deg, #0e2ed0 0%, #a607bf 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-top: -20px;
@@ -27,7 +27,7 @@
   padding-left: 5px;
   margin-left: 20px;
   margin-top: 20px;
-  border-image: linear-gradient(90deg, #3f5efb 0%, #dd48f5 100%);
+  border-image: linear-gradient(90deg, #0e2ed0 0%, #a607bf 80%);
   border-image-slice: 1 
 }
 
@@ -46,7 +46,7 @@
   padding-right: 5px;
   margin-top: 20px;
   text-align: right;
-  border-image: linear-gradient(270deg, #3f5efb 0%, #dd48f5 100%);
+  border-image: linear-gradient(270deg, #0e2ed0 0%, #a607bf 80%);
   border-image-slice: 1
 }
 
@@ -65,15 +65,18 @@ h5 {
 
 /* NASA COMPONENTS */
 .img {
-  border-radius: 30px;
-  width: 30%;
-  height: 30%;
+  border-radius: 20px;
+  width: 20%;
+  height: 20%;
   display: inline-block;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
 }
 
 .title {
   color: white;
-  font-family: 'Chathura', sans-serif;
+  font-family: 'Abel', sans-serif;
 }
 
 .single-img {
@@ -81,5 +84,14 @@ h5 {
   margin: auto;
   width: 50%;
   display: block;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+}
+
+.allimgs {
+  /* display: inline-block; */
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -157,10 +157,12 @@ function update(req, res){
 
 function destroy(req, res){
     let nasaID = req.params.nasa_id
-    Nasa.findById(nasaID, function(err, foundNasa){
-        if(err) res.send('Comment destroy controllers', err);
+    Nasa.findOne({nasa_id: nasaID}, function(err, foundNasa){
+        if(err) {
+            res.send('Comment destroy controllers', err);
+        }
         else {
-            let commentToDelete = foundNasa.comments.id(req.params.comment_id);
+            let commentToDelete = foundNasa.comments._id
             if(commentToDelete){
                 commentToDelete.remove();
                 foundNasa.save(function(err, saved){

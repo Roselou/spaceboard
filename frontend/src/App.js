@@ -13,7 +13,7 @@ class App extends Component {
           <h5 className="signup"> Signup </h5>
         </header>
         <div>
-          <Link to='/'><h1 className="App-title App">SPACE BOARD</h1></Link>
+          <Link to='/' onClick={this.setState}><h1 className="App-title App">SPACE BOARD</h1></Link>
           </div>
       
       </div>

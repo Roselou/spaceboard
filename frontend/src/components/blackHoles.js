@@ -37,38 +37,29 @@ class BlackHoles extends Component {
         })
 }
 
- 
-    
     render(){
         console.log('Black Holes', this.state.blackhole)
         let blackHoleResult = this.state.blackhole.map(item => {
             let nasa_id = item.data[0].nasa_id
             return(
-            <div key={nasa_id} >
+            <div className="col s3" key={nasa_id} >
+            <span className="allimgs col s4">
                 < div className="col s4" >
-                <h2 className="title">{item.data[0].title}</h2>
+                <h4 className="title">{item.data[0].title}</h4>
                 </div>
                 < div >
-                <Link to={`/api/nasa/${nasa_id}`}> <img className="img"src={item.links[0].href} alt="Nasa Blackhole" width="25%" height="25%" /> </Link>
+                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} > <img className="img"src={item.links[0].href} alt="Nasa Blackhole" /> </Link>
                 </div>
+            </span>
             </div>
             )
         })
-
-      
-
-        
 
         return(
             <div> 
                 {blackHoleResult}
             </div>
-
         )
-   
-    
-
-
     }
 //Don't Touch - closes className    
 }

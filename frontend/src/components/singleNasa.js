@@ -20,7 +20,7 @@ class singleNasa extends Component {
             .then(allComments => {
                 this.setState( {comments: allComments[0].comments} );
              })
-        .catch(err => console.log('Single Nasa Page err', err))
+        .catch(err => console.log('Single Nasa Page GET err', err))
     }
 
     handleNameChange = (e) => {
@@ -53,7 +53,6 @@ class singleNasa extends Component {
         }).then(res => {
             return res.json()
         }).then(json => {
-
             this.setState({
                 currentComment: '',
                 name: '',
@@ -62,6 +61,56 @@ class singleNasa extends Component {
             console.log(11, this.state)
         })
     }
+
+    deleteComment = () => {
+        let nasaID = this.props.match.nasa_id;
+        let commentID = this.props.match.comment_id;
+        fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
+            method: 'DELETE',
+            headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    comments: this.state.currentComment,
+                })
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            this.setState({
+                currentComment: '',
+                name: '',
+                comments: [...this.state.comments, this.state.currentComment]
+            })
+            console.log('DELETE', this.state)
+        });
+    }
+
+    updateComment = () => {
+        let nasaID = this.props.match.nasa_id;
+        let commentID = this.props.match.comment_id;
+        fetch(`http://localhost:8080/api/nasa/${nasaID}/comments/${commentID}`, {
+            method: 'PUT',
+            headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  name: this.state.name,
+                  comments: this.state.currentComment,
+              })
+          }).then(res => {
+              return res.json();
+          }).then(json => {
+              this.setState({
+                  currentComment: '',
+                  name: '',
+                  comments: [...this.state.comments, this.state.currentComment]
+              })
+              console.log('PUT', this.state)
+          });
+          }
 
     render() {
         console.log('STATE', this.state);
@@ -76,8 +125,10 @@ class singleNasa extends Component {
          ? this.state.comments.map((comment, idx) => {
             return ( <div key = {comment._id} className = 'commentContainer title' >
                 <div className = "comments" >
-                <p className="title" > < strong > {comment.name} </strong>: {comment.comments} </p >
-                </div> 
+                <h2 className="title" > < strong > {comment.name} </strong>: {comment.comments} </h2 >
+                <button onClick={this.deleteComment}> Delete </button>
+                <button onClick={this.updateComment}> Upate </button>
+                </div>
                 </div>
         );
         }) 
@@ -95,9 +146,9 @@ class singleNasa extends Component {
         let nasaId = this.props.match.params.nasa_id;
         let imgUrl = `https://images-assets.nasa.gov/image/${nasaId}/${nasaId}~thumb.jpg`
 
-
         return ( 
-            <div className="title">
+            <div key={nasaId} className="title">
+
                 <img className="single-img" src={imgUrl} alt="From NASA" />
                
 
@@ -105,27 +156,27 @@ class singleNasa extends Component {
             < div className = "row title" >
                 <form className = "col s12" onSubmit = {this.createComment} >
                     <div className = "row" >
-                        <div className = "input-field col s6 title" >
+                        <div className = "input-field col s6" >
                             <input 
                                 id = "icon_prefix" 
                                 type = "text" 
-                                className = "validate" 
+                                className = "validate title" 
                                 autoFocus = {this.props.autoFocus} 
                                 onChange = {this.handleNameChange}
                                 value = {this.state.name}
                                 placeholder = "Name" />
                         </div>
                         
-                        <div className = "input-field col s6 title" >
-                            <input
+                        <div className = "input-field col s6 " >
+                            <input 
                                 id = "icon_prefix2"
-                                className = "materialize-textarea"
+                                className = "materialize-textarea title"
                                 onChange = {this.handleCommentChange}
                                 value = {this.state.currentComment}
                                 placeholder = "Comment..." />
                         </div>
                     </div> 
-                    <button className = "btn-floating btn-small waves-effect waves-light" > + </button >
+                    < button className = "waves-effect waves-light btn indigo lighten-3" > Submit Comment </button >
                 </form> 
             </div>
             {commentsResult}
