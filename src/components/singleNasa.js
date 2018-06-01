@@ -92,7 +92,6 @@ class singleNasa extends Component {
 
 
     render() {
-
          let commentsResult = this.state.comments
          ? this.state.comments.map((comment, idx) => {
             //  console.log('Idx is:::::', idx)
@@ -113,38 +112,35 @@ class singleNasa extends Component {
 
         return ( 
             <div className="title">
-
                 <img className="single-img" src={imgUrl} alt="From NASA" />
-               
-
-            < div className = "title" >
-                <form className = "col s12" onSubmit = {this.createComment} >
-                    <div>
-                        <div className = "input-field col s6" >
-                            <input 
-                                id = "icon_prefix" 
-                                type = "text" 
-                                className = "validate title" 
-                                autoFocus = {this.props.autoFocus} 
-                                onChange = {this.handleNameChange}
-                                value = {this.state.name}
-                                placeholder = "Name" />
-                        </div>
+                    < div className = "title" >
+                        <form className = "col s12" onSubmit = {this.createComment} >
+                            <div>
+                                <div className = "input-field col s6" >
+                                    <input 
+                                        id = "icon_prefix" 
+                                        type = "text" 
+                                        className = "validate title" 
+                                        autoFocus = {this.props.autoFocus} 
+                                        onChange = {this.handleNameChange}
+                                        value = {this.state.name}
+                                        placeholder = "Name" />
+                                </div>
                         
-                        <div className = "input-field col s6 " >
-                            <input 
-                                id = "icon_prefix2"
-                                className = "materialize-textarea title"
-                                type="text"
-                                onChange = {this.handleCommentChange}
-                                value = {this.state.currentComment}
-                                placeholder = "Comment..." />
-                        </div>
-                    </div> 
-                    < button className = "waves-effect waves-light btn indigo lighten-2" > Add Comment </button >
-                </form> 
-            </div>
-            {commentsResult}
+                                <div className = "input-field col s6 " >
+                                    <input 
+                                        id = "icon_prefix2"
+                                        className = "materialize-textarea title"
+                                        type="text"
+                                        onChange = {this.handleCommentChange}
+                                        value = {this.state.currentComment}
+                                        placeholder = "Comment..." />
+                                </div>
+                            </div> 
+                            < button className = "waves-effect waves-light btn indigo lighten-2" > Add Comment </button >
+                        </form> 
+                    </div>
+                {commentsResult}
             </div>
 
         )

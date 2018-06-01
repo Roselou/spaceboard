@@ -40,22 +40,24 @@ class Comet extends Component {
     render() {
         console.log('comet', this.state.comet)
         let cometResult = this.state.comet.map(item => {
-            let nasa_id = item.data[0].nasa_id
-            return <div className="row nasa" key = {nasa_id} >
-            <div className="col s12 m7">
-                <div className="card small ">
-                <div className="card-image">
-                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img" src={item.links[0].href} alt="comet" /></Link>
+        let nasa_id = item.data[0].nasa_id
+        return 
+            <div className="row nasa" key = {nasa_id} >
+                <div className="col s12 m7">
+                    <div className="card small ">
+                        <div className="card-image">
+                            <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img" src={item.links[0].href} alt="comet" /></Link>
+                        </div>
+                        < div className = "card-content" >
+                            <h6>{item.data[0].title}</h6>
+                        </div>
+                    </div>
                 </div>
-                < div className = "card-content" >
-                    <h6>{item.data[0].title}</h6>
-                </div>
-                </div>
-            </div>
             </div>
         })
-        return ( <div > 
-            {cometResult} 
+        return ( 
+            <div > 
+                {cometResult} 
             </div>
         )
     }
