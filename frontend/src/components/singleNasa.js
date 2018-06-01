@@ -118,10 +118,9 @@ class singleNasa extends Component {
                 <img className="single-img" src={imgUrl} alt="From NASA" />
                
 
-            <hr />  
-            < div className = "row title" >
+            < div className = "title" >
                 <form className = "col s12" onSubmit = {this.createComment} >
-                    <div className = "row" >
+                    <div>
                         <div className = "input-field col s6" >
                             <input 
                                 id = "icon_prefix" 

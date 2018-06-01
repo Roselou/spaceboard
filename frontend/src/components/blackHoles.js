@@ -42,8 +42,8 @@ class BlackHoles extends Component {
         let blackHoleResult = this.state.blackhole.map(item => {
             let nasa_id = item.data[0].nasa_id
             return(
-            <div className="col s3" key={nasa_id} >
-            <span className="allimgs col s4">
+            <div className="col s3 allimgs" key={nasa_id} >
+            <span className="col s4">
                 < div className="col s4" >
                 <h4 className="title">{item.data[0].title}</h4>
                 </div>
