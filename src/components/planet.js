@@ -40,13 +40,13 @@ class Planet extends Component {
         console.log('planets', this.state.planet)
         let planetResult = this.state.planet.map(item => {
              let nasa_id = item.data[0].nasa_id
-            return <div class="row nasa" key = {nasa_id} >
-            <div class="col s12 m7">
-                <div class="card small ">
-                <div class="card-image">
+            return <div className="row nasa" key = {nasa_id} >
+            <div className="col s12 m7">
+                <div className="card small ">
+                <div className="card-image">
                 <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img" src={item.links[0].href} alt="planet"/></Link>
                 </div>
-                < div class = "card-content" >
+                < div className = "card-content" >
                     <h6>{item.data[0].title}</h6>
                 </div>
                 </div>
