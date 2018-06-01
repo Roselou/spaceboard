@@ -43,7 +43,6 @@ class singleNasa extends Component {
         
         fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaId}/comments`, {
             method: 'POST',
-            mode: "CORS",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -70,7 +69,6 @@ class singleNasa extends Component {
         // console.log('MY COMMENTS', this.state.comments._id)
         fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaID}/comments/${commentId}`, {
             method: 'DELETE',
-            mode: 'CORS',
             headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
