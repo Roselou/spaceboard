@@ -46,7 +46,7 @@ class BlackHoles extends Component {
             <div class="col s12 m7">
                 <div class="card small ">
                 <div class="card-image">
-                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img" src={item.links[0].href} /></Link>
+                <Link to={`/api/nasa/${nasa_id}`} onClick={this.makeNasa} ><img className="img" src={item.links[0].href} alt='black hole'/></Link>
                 </div>
                 < div class = "card-content" >
                     <h6>{item.data[0].title}</h6>
