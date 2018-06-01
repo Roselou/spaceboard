@@ -21,7 +21,7 @@ class Galaxy extends Component {
         let newID = this.state.galaxy.data[0].nasa_id
         let newURL = this.state.galaxy.links[0].href
         let newDesc = this.state.galaxy.data[0].description_508
-        fetch('http://localhost:8080/api/nasa/', {
+        fetch('https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

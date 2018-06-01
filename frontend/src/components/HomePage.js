@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import blackhole from '../imgs/black-hole2.png';
-import shining from '../imgs/shining.png';
-import nebula from '../imgs/nebula.png';
-import planets from '../imgs/planets.png';
-import comet from '../imgs/comet.png';
-import galaxy from '../imgs/milky-way.png';
+import blackhole from '../imgs/black-hole.svg';
+import shining from '../imgs/star.svg';
+import nebula from '../imgs/nebula.svg';
+import planets from '../imgs/planet.svg';
+import comet from '../imgs/asteroid.svg';
+import galaxy from '../imgs/galaxy-svgrepo-com.svg';
 import '../App.css'
 
 class HomePage extends Component{

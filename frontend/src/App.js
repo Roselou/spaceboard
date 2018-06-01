@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div >
         <div>
-          <Link to='/' onClick={this.setState}> <img className="logo-img" src={logo} /> </Link>
+          <Link to='/' onClick={this.setState}> <img className="logo-img" src={logo} alt="little space man"/> </Link>
           <Link to='/' onClick={this.setState}><h1 className="App-title App">SPACE BOARD</h1></Link>
           </div>
       
