@@ -41,7 +41,7 @@ class Comet extends Component {
         console.log('comet', this.state.comet)
         let cometResult = this.state.comet.map(item => {
         let nasa_id = item.data[0].nasa_id
-        return 
+        return (
             <div className="row nasa" key = {nasa_id} >
                 <div className="col s12 m7">
                     <div className="card small ">
@@ -54,6 +54,7 @@ class Comet extends Component {
                     </div>
                 </div>
             </div>
+        )
         })
         return ( 
             <div > 

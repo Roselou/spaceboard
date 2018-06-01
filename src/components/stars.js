@@ -38,7 +38,7 @@ class Star extends Component {
         console.log('stars', this.state.stars[0])
         let starResult = this.state.stars.map(item => {
         let nasa_id = item.data[0].nasa_id
-        return 
+        return (
             <div className="row nasa" key = {nasa_id} >
                 <div className="col s12 m7">
                     <div className="card small ">
@@ -51,6 +51,7 @@ class Star extends Component {
                     </div>
                 </div>
             </div>
+        )
         })
         return(
             <div> 
