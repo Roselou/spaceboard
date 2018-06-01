@@ -43,6 +43,7 @@ class singleNasa extends Component {
         
         fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaId}/comments`, {
             method: 'POST',
+            mode: "CORS",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
