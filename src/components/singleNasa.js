@@ -15,7 +15,7 @@ class singleNasa extends Component {
         let nasaId = this.props.match.params.nasa_id;
         // console.log(nasaId)
         // console.log(`https://images-api.nasa.gov/search?q=black-hole&media_type=image/api/nasa/${nasaId}`)
-        fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaId}`)
+        fetch(`https://shrouded-beyond-10542.herokuapp.com/api/nasa/${nasaId}`)
             .then(res => res.json())
             .then(allComments => {
                 this.setState( {comments: allComments[0].comments} );
@@ -41,7 +41,7 @@ class singleNasa extends Component {
         // console.log(234, this.state)
         let nasaId = this.props.match.params.nasa_id;
         
-        fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaId}/comments`, {
+        fetch(`https://shrouded-beyond-10542.herokuapp.com/api/nasa/${nasaId}/comments`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -67,7 +67,7 @@ class singleNasa extends Component {
         // let commentID = this.state.comments._id;
         console.log(123, commentId)
         // console.log('MY COMMENTS', this.state.comments._id)
-        fetch(`https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/${nasaID}/comments/${commentId}`, {
+        fetch(`https://shrouded-beyond-10542.herokuapp.com/api/nasa/${nasaID}/comments/${commentId}`, {
             method: 'DELETE',
             headers: {
                     'Accept': 'application/json',

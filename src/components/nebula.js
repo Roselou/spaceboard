@@ -19,7 +19,7 @@ makeNasa = () => {
     let newID = this.state.nebula.data[0].nasa_id
     let newURL = this.state.nebula.links[0].href
     let newDesc = this.state.nebula.data[0].description_508
-    fetch('https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/', {
+    fetch('https://shrouded-beyond-10542.herokuapp.com/api/nasa', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
