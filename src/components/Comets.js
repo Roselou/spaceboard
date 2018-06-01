@@ -24,6 +24,7 @@ class Comet extends Component {
             let newDesc = this.state.comet.data[0].description_508
             fetch('https://dashboard.heroku.com/apps/shrouded-beyond-10542/api/nasa/', {
                 method: 'POST',
+                mode: 'CORS',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
