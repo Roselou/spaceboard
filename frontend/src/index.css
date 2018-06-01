@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  
+  padding-bottom: 10em;
   font-family: sans-serif;
-  background: rgb(24, 24, 24);
+  background: rgb(34, 34, 34);
 }

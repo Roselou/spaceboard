@@ -3,15 +3,27 @@
   padding-bottom: 10px;
 }
 
+.logo-img {
+  width: 5%;
+  height: 5%;
+  margin-left: 2em;
+  margin-top: 2em;
+  margin-bottom: -4em;
+}
 .homepage {
   margin-left: 9em;
+}
+
+.nasa {
+  margin-right: -110px;
+  margin-left: 110px;
 }
 
 .App-title {
   font-size: 8em;
   font-family: 'Chathura', sans-serif;
   letter-spacing: .2em;
-  background: -webkit-linear-gradient(90deg, #eeaeca 0%, #94bbe9 80%);
+  background: -webkit-linear-gradient(90deg, #8421e0 25%, #539df1d8 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: auto

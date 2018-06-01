@@ -38,7 +38,7 @@ render() {
     console.log('nebulae', this.state.nebulae)
     let nebulaResult = this.state.nebulae.map(item => {
          let nasa_id = item.data[0].nasa_id
-        return <div class="row centered" key = {nasa_id} >
+        return <div class="row nasa" key = {nasa_id} >
             <div class="col s12 m7">
                 <div class="card small ">
                 <div class="card-image">
